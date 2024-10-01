@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 using test_task.Models;
 using test_task.Repositories;
 
@@ -11,7 +12,7 @@ namespace test_task.Pages
         private EFCursorPosRepository _repository;
 
         [BindProperty]
-        public CursorPos cursorPos { get; set; }
+        public CursorData cursorData { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, EFCursorPosRepository repository)
         {
@@ -21,15 +22,17 @@ namespace test_task.Pages
 
         public void OnGet()
         {
-            cursorPos = new CursorPos();
-            cursorPos.id = Guid.NewGuid();
+            cursorData = new CursorData();
         }
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-
+                CursorPos cursorPos = new CursorPos();
+                string Data = JsonSerializer.Serialize(cursorData);
+                cursorPos.id = Guid.NewGuid();
+                cursorPos.data = Data;
                 _repository.AddCursorPos(cursorPos);
             }
             return Page();

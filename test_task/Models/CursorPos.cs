@@ -1,12 +1,10 @@
 ﻿
 namespace test_task.Models
 {
-    public record class CursorPos
+    public class CursorPos
     {
         public Guid id { get; set;}
-        public int x { get; set;}
-        public int y { get; set;}
-        
-        public DateTime time { get; set; }
+
+        public string data { get; set; }
     }
 }

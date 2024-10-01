@@ -28,14 +28,9 @@ namespace test_task.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("time")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("x")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("y")
-                        .HasColumnType("integer");
+                    b.Property<string>("data")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("id");
 

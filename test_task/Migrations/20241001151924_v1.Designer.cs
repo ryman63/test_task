@@ -12,7 +12,7 @@ using test_task.Repositories;
 namespace test_task.Migrations
 {
     [DbContext(typeof(EFCursorPosRepository))]
-    [Migration("20241001145631_v1")]
+    [Migration("20241001151924_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,14 +30,9 @@ namespace test_task.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("time")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("x")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("y")
-                        .HasColumnType("integer");
+                    b.Property<string>("data")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("id");
 
